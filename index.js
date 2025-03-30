@@ -1,9 +1,11 @@
 const express = require("express");
+const cors = require("cors"); // Import CORS
 const { Pool } = require("pg");
 require("dotenv").config();
 
 const app = express();
 
+app.use(cors()); // Enable CORS for all routes
 app.use(express.json());
 
 // PostgreSQL connection pool
@@ -65,6 +67,10 @@ app.put("/project/status", async (req, res) => {
     console.error("Error updating project status:", err);
     res.status(500).json({ message: "Internal server error" });
   }
+});
+const port = process.env.PORT || 3000;
+app.listen(port, "0.0.0.0", () => {
+  console.log(`Server running on http://localhost:${port}`);
 });
 
 // Export the app for Vercel
