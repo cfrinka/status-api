@@ -3,7 +3,6 @@ const { Pool } = require("pg");
 require("dotenv").config();
 
 const app = express();
-const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
@@ -64,7 +63,5 @@ app.put("/project/status", async (req, res) => {
   }
 });
 
-// Start the server
-app.listen(port, "0.0.0.0", () => {
-  console.log(`Server running on http://localhost:${port}`);
-});
+// Export the app for Vercel
+module.exports = app;
