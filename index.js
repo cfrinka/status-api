@@ -24,6 +24,10 @@ pool.connect((err) => {
   }
 });
 
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "ok", message: "Server is healthy" });
+});
+
 // Basic route to fetch data
 app.get("/projects", async (req, res) => {
   try {
